@@ -10,11 +10,11 @@ function G = FullConv(corrtype,periodicity,masked,varargin)
 %
 % corrtype         - Auto('a') or Cross Correlation('c')
 % periodicity      - Periodic('p') or Non-Periodic('n')
-% masked           - Masked('m') or Raw('r')
+% masked          - Masked('m') or Raw('r')
 %
 % For example:
 %
-% G = TwoPointMaster('c','n','m','m',...) would calculate the Masked Non
+% G = TwoPointMaster('c','n','m',...) would calculate the Masked Non
 % Periodic Cross Correlation using the memory mapping.
 % 
 % After the functionality strings, an appropriate number of variables need
@@ -22,17 +22,17 @@ function G = FullConv(corrtype,periodicity,masked,varargin)
 %
 % H1        -  (Mandatory) First Microstructure.
 % H2        -  (If Cross Correlation) Second Microstructure.
-% Mask      -  (If Masked) Mask Matrix same size as H1.
+% Mask     -  (If Masked) Mask Matrix same size as H1.
 %
 % Examples:
 %
-% G = TwoPointMaster('c','n','m','m',H1,H2,Mask) - > This is a masked cross
+% G = TwoPointMaster('c','n','m',H1,H2,Mask) - > This is a masked cross
 % correlation.
 %
-% G = TwoPointMaster('a','n','m','m',H1,Mask) - > This is a masked auto
+% G = TwoPointMaster('a','n','m',H1,Mask) - > This is a masked auto
 % correlation.
 %
-% G = TwoPointMaster('a','n','r','m',H1) - > This is a raw auto
+% G = TwoPointMaster('a','n','r',H1) - > This is a raw auto
 % correlation.
 
 % Case Division
