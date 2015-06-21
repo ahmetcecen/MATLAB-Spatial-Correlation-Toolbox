@@ -1,17 +1,34 @@
-function GG = TwoPointMaster(memtype,corrtype,varargin)
-
-%G = TwoPointMaster('full','auto',H1)
-
-%G = TwoPointMaster('full','cross',H1,H2)
- 
-%G = TwoPointMaster('patched','auto',DataFile,cutoff,winmulti)
-
-%G = TwoPointMaster('patched','cross',DataFile,DataFile2,cutoff,winmulti)
- 
-%G = TwoPointMaster(memtype,corrtype,varargin)
+function GG = TwoPointMaster(memtype,corrtype,cutoff,varargin)
+% FFT Convolution Wrapper for Two-Point Statistics Calculations. A by-product of ongoing computational
+% materials science research at MINED@Gatech.(http://mined.gatech.edu/)
+%
+% This function calculates VECTOR COUNTS for utilization in 2-point statistics calculations. A proper statistics
+% calculation would use this function TWICE: once for the numerator and once for the denominator. 
+%
+% GG = TwoPointMaster('full','auto',cutoff,H1) calculates the vector counts for the auto correlation of H1, 
+% with a maximum vector length of "cutoff". 
+%
+% GG = TwoPointMaster('full','cross',cutoff,H1,H2) calculates the vector counts for the  cross correlation of H1 and H2, 
+% with a maximum vector length of "cutoff". 
+% 
+% GG = TwoPointMaster('patched','auto',cutoff,DataFile,winmulti) calculates the vector counts for the auto correlation of H1, 
+% with a maximum vector length of "cutoff". However this version uses the patching convolution method to save memory,
+% sacrificing computation time. A balance between memory and computation time can be struck using the winmulti parameter.
+% A winmulti of 1 will result in the minimum memory calculation, and will take considerably (sometimes an order of magnitude)
+% longer to calculate, whereas a winmulti of 3 will take roughly 8 gb of memory, resulting in only twice the computational time
+% for most practical cases.
+%
+% %GG = TwoPointMaster('patched','cross',cutoff,DataFile,winmulti,DataFile2) calculates the vector counts for the cross correlation of H1 and H2, 
+% with a maximum vector length of "cutoff". However this version uses the patching convolution method to save memory,
+% sacrificing computation time. A balance between memory and computation time can be struck using the winmulti parameter.
+% A winmulti of 1 will result in the minimum memory calculation, and will take considerably (sometimes an order of magnitude)
+% longer to calculate, whereas a winmulti of 3 will take roughly 11 gb of memory, resulting in only twice the computational time
+% for most practical cases.
+%
+% Author: Ahmet Cecen
+% Contact: ahmetcecen@gmail.com
+%
   
-%(cutoff,winmulti,corrtype,DataFile,varargin)
-
 switch memtype
 	
 	case 'full'
@@ -55,12 +72,15 @@ switch memtype
 	case 'patched'
 	
 		% Window Indexing Variables
+		DataFile=varargin{1};
+		winmulti=varargin{2};
 		
         m=matfile(DataFile);
+		Hsize=size(m,'H1');
 		
         % If 3D
         if length(Hsize)==3
-			DataSize=m.Hsize-[2*(cutoff-1),2*(cutoff-1),2*(cutoff-1)];
+			DataSize=Hsize-[2*(cutoff-1),2*(cutoff-1),2*(cutoff-1)];
 			nz=DataSize(3);		
 			ztra=mod(nz,(winmulti*cutoff));		
 			zbc=floor(nz/(winmulti*cutoff));
@@ -72,7 +92,7 @@ switch memtype
         end
 
         if length(Hsize)==2
-            DataSize=m.Hsize-[2*(cutoff-1),2*(cutoff-1)];
+            DataSize=Hsize-[2*(cutoff-1),2*(cutoff-1)];
 			GG = zeros((1+2*(cutoff-1)),(1+2*(cutoff-1))); 
         end
 	
@@ -96,8 +116,6 @@ switch memtype
 
 		xwinlist=[xwinsize*ones(xbc-1,1);(xwinsize+xbuftra)];
 		ywinlist=[ywinsize*ones(ybc-1,1);(ywinsize+ybuftra)];
-		
-
 		
 		% Main Loop
 		
@@ -163,7 +181,9 @@ switch memtype
 				
 			case 'cross'
 				% Memory Map
+				DataFile2=varargin{3};
 				n=matfile(DataFile2);
+				
 				
 				if length(Hsize)==2
 				
