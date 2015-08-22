@@ -41,4 +41,3 @@ padmfile('normalizer.m',myvar,cutoff,'mynorm.m') <- Since there is no mask, the 
 BB = CorrMaster('patched','auto',cutoff,'mynorm',2.23) <- Calculate normalization.
  
 AutoCorrelation=GG./BB <- Because I asked the question this way, this is the corresponding 2-pt statistics.
- 
