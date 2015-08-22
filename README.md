@@ -1,6 +1,6 @@
 MATLAB Spatial Correlation Toolbox
 ==========================
-[![DOI](https://zenodo.org/badge/17404/ahmetcecen/MATLAB-Spatial-Correlation-Toolbox.svg)](https://zenodo.org/badge/latestdoi/17404/ahmetcecen/MATLAB-Spatial-Correlation-Toolbox)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.28859.svg)](http://dx.doi.org/10.5281/zenodo.28859)
 
 A toolbox designed specifically for computing spatial correlations of gigantic datasets, with support for regular sized datasets as well. The toolbox takes advantage of the memory mapping functionality in MATLAB to operate on a chunk of the data at a time. The overal strategy is ineffective for parrallelization as it involves tremendous overhead, but it is ideal for "sequentialization", when the algorithm needs to be able to run on a simple everyday machine, and it is okay for it to take a bit longer than the optimal calculation. I refer to it as the Patched Correlation Method since it uses patches of data at a time, although you are free to not call it that.
 
