@@ -1,4 +1,4 @@
-function GG = TwoPointMaster(memtype,corrtype,cutoff,varargin)
+function GG = CorrMaster(memtype,corrtype,cutoff,varargin)
 % FFT Convolution Wrapper for Two-Point Statistics Calculations. 
 % A by-product of ongoing computational materials science research 
 % at MINED@Gatech.(http://mined.gatech.edu/)
@@ -7,14 +7,14 @@ function GG = TwoPointMaster(memtype,corrtype,cutoff,varargin)
 % statistics calculations. A proper statistics calculation would use this 
 % function TWICE: once for the numerator and once for the denominator. 
 %
-% GG = TwoPointMaster('full','auto',cutoff,H1) calculates the vector counts
+% GG = CorrMaster('full','auto',cutoff,H1) calculates the vector counts
 % for the auto correlation of H1,with a maximum vector length of "cutoff". 
 %
-% GG = TwoPointMaster('full','cross',cutoff,H1,H2) calculates the vector 
+% GG = CorrMaster('full','cross',cutoff,H1,H2) calculates the vector 
 % counts for the  cross correlation of H1 and H2, with a maximum vector 
 % length of "cutoff". 
 % 
-% GG = TwoPointMaster('patched','auto',cutoff,DataFile,winmulti) calculates
+% GG = CorrMaster('patched','auto',cutoff,DataFile,winmulti) calculates
 % the vector counts for the auto correlation of H1,with a maximum vector 
 % length of "cutoff". However this version uses the patching convolution 
 % method to save memory, sacrificing computation time. A balance between 
@@ -24,7 +24,7 @@ function GG = TwoPointMaster(memtype,corrtype,cutoff,varargin)
 % whereas a winmulti of 3 will take roughly 8 gb of memory, resulting in 
 % only twice the computational time for most practical cases.
 %
-% %GG = TwoPointMaster('patched','cross',cutoff,DataFile,winmulti,DataFile2)
+% GG = CorrMaster('patched','cross',cutoff,DataFile,winmulti,DataFile2)
 % calculates the vector counts for the cross correlation of H1 and H2, 
 % with a maximum vector length of "cutoff". However this version uses the 
 % patching convolution method to save memory, sacrificing computation time. 
