@@ -3,9 +3,9 @@ MATLAB Spatial Correlation Toolbox
 
 A toolbox designed specifically for computing spatial correlations of gigantic datasets, with support for regular sized datasets as well. The toolbox takes advantage of the memory mapping functionality in MATLAB to operate on a chunk of the data at a time. The overal strategy is ineffective for parrallelization as it involves tremendous overhead, but it is ideal for "sequentialization", when the algorithm needs to be able to run on a simple everyday machine, and it is okay for it to take a bit longer than the optimal calculation. I refer to it as the Patched Correlation Method since it uses patches of data at a time, although you are free to not call it that.
 
-GG = CorrMaster('full','auto',cutoff,H1) and GG = CorrMaster('full','cross',cutoff,H1,H2) will compute the plain old circular ('full' option) auto or cross correlation using FFTs. It will return the correlation results trimmed by a cutoff, with the final output being size 2*cutoff-1 in all dimensions, and the 0 index shifted to the center.
+`GG = CorrMaster('full','auto',cutoff,H1)` and `GG = CorrMaster('full','cross',cutoff,H1,H2)` will compute the plain old circular ('full' option) auto or cross correlation using FFTs. It will return the correlation results trimmed by a cutoff, with the final output being size 2*cutoff-1 in all dimensions, and the 0 index shifted to the center.
 
-GG = CorrMaster('patched','auto',cutoff,DataFile,winmulti) and GG = CorrMaster('patched','cross',cutoff,DataFile,winmulti,DataFile2) will compute the patched auto or cross correlation. The "datafile" is the path to a matfile that contains the data you need to process, **already zero padded by exactly cutoff on BOTH sides** (you can use padarray for this or the memory mapped version below) and the name of the variable has to be H1. An example H1 for 100x100 image is with a cutoff of 20 is a variable H1 inside a data.m file that is 140x140 with 20 pixels zero padded on each side. 
+`GG = CorrMaster('patched','auto',cutoff,DataFile,winmulti)` and `GG = CorrMaster('patched','cross',cutoff,DataFile,winmulti,DataFile2)` will compute the patched auto or cross correlation. The "datafile" is the path to a matfile that contains the data you need to process, **already zero padded by exactly cutoff on BOTH sides** (you can use padarray for this or the memory mapped version below) and the name of the variable has to be H1. An example H1 for 100x100 image is with a cutoff of 20 is a variable H1 inside a data.m file that is 140x140 with 20 pixels zero padded on each side. 
 
 There is a heuristic in place to calculate an optimal patch size for minimum memory requirement to divide up the data, and winmulti is the multiplier for that size. So a winmulti of 2 will use twice the optimal size. This is useful if you can afford the extra memory, since the higher the winmulti, the faster the computation time (as long as you don't go out of bounds into a pagefile).
 
@@ -14,7 +14,7 @@ There are two files to pad and element-wise multiply 2D or 3D data for use with 
 Use for 2-Point Statistics
 ==========================
 
-The following article describes in detail the theory necessary to properly utilize this toolbox to calculate 2-pt statistics:  
+The following article describes in detail the theory necessary to properly utilize this toolbox to calculate 2-pt statistics: UNDER REVIEW  
 
 Below will be a less detailed guide.
 
@@ -34,6 +34,7 @@ Here is an example procedure that calculates a non-periodic memory mapped auto c
 
 I want to find the probability of finding every possible vector that is shorter than cutoff in this data, while discarding any vector that crosses the data boundaries.
 
+```matlab
 padmfile('yourdir\yourdata.m',myvar,cutoff,'mydata.m') <- Pad the image by cutoff. mydata will be saved with a variable named H1 for convenience.
 GG = CorrMaster('patched','auto',cutoff,'mydata',2.23) <- Calculate auto-correlation.
 
@@ -41,3 +42,4 @@ padmfile('normalizer.m',myvar,cutoff,'mynorm.m') <- Since there is no mask, the 
 BB = CorrMaster('patched','auto',cutoff,'mynorm',2.23) <- Calculate normalization.
  
 AutoCorrelation=GG./BB <- Because I asked the question this way, this is the corresponding 2-pt statistics.
+```
