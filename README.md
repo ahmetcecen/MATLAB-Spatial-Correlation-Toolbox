@@ -1,6 +1,6 @@
 MATLAB Spatial Correlation Toolbox
 ==========================
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.28859.svg)](http://dx.doi.org/10.5281/zenodo.28859)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.31329.svg)](http://dx.doi.org/10.5281/zenodo.31329)
 
 Table of contents
 =================
