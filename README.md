@@ -5,12 +5,12 @@ MATLAB Spatial Correlation Toolbox
 Table of contents
 =================
 
-  * [Introduction](# Introduction)
-  * [Correlation and Convolution](# Correlation and Convolution)
-  * [Use for 2-Point Statistics](# Use for 2-Point Statistics)
-    * [Setting Up a Problem](## Setting Up a Problem)
-    * [Converting the Problem to a Computation](## Converting the Problem to a Computation)
-    * [TwoPoint](## TwoPoint)
+  * [Introduction](#Introduction)
+  * [Correlation and Convolution](#Correlation-and-Convolution)
+  * [Use for 2-Point Statistics](#Use-for-2-Point-Statistics)
+    * [Setting Up a Problem](##Setting-Up-a-Problem)
+    * [Converting the Problem to a Computation](##Converting-the-Problem-to-a-Computation)
+    * [TwoPoint](##TwoPoint)
 
 # Introduction
 
