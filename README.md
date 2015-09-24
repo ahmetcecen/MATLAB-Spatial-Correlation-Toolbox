@@ -2,7 +2,21 @@ MATLAB Spatial Correlation Toolbox
 ==========================
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.28859.svg)](http://dx.doi.org/10.5281/zenodo.28859)
 
+Table of contents
+=================
+
+  * [Introduction](# Introduction)
+  * [Correlation and Convolution](# Correlation and Convolution)
+  * [Use for 2-Point Statistics](# Use for 2-Point Statistics)
+    * [Setting Up a Problem](## Setting Up a Problem)
+    * [Converting the Problem to a Computation](## Converting the Problem to a Computation)
+    * [TwoPoint](## TwoPoint)
+
+# Introduction
+
 A toolbox designed specifically for computing spatial correlations of gigantic datasets, with support for regular sized datasets as well. The toolbox takes advantage of the memory mapping functionality in MATLAB to operate on a chunk of the data at a time. The overal strategy is ineffective for parrallelization as it involves tremendous overhead, but it is ideal for "sequentialization", when the algorithm needs to be able to run on a simple everyday machine, and it is okay for it to take a bit longer than the optimal calculation. I refer to it as the Patched Correlation Method since it uses patches of data at a time, although you are free to not call it that.
+
+# Correlation and Convolution
 
 `GG = CorrMaster('full','auto',cutoff,H1)` and `GG = CorrMaster('full','cross',cutoff,H1,H2)` will compute the plain old circular ('full' option) auto or cross correlation using FFTs. It will return the correlation results trimmed by a cutoff, with the final output being size 2*cutoff-1 in all dimensions, and the 0 index shifted to the center.
 
@@ -12,8 +26,7 @@ There is a heuristic in place to calculate an optimal patch size for minimum mem
 
 There are two files to pad and element-wise multiply 2D or 3D data for use with this code called ewpmfile and padmfile, which should be straight forward to use since they share the same input terminology, with the exception of being able to handle any variable inside a matfile chosen by you, not only H1.
 
-Use for 2-Point Statistics
-==========================
+# Use for 2-Point Statistics
 
 The following article describes in detail the theory necessary to properly utilize this toolbox to calculate 2-pt statistics: UNDER REVIEW  
 
@@ -44,3 +57,19 @@ BB = CorrMaster('patched','auto',cutoff,'mynorm',2.23) <- Calculate normalizatio
  
 AutoCorrelation=GG./BB <- Because I asked the question this way, this is the corresponding 2-pt statistics.
 ```
+
+## TwoPoint
+
+`TwoPoint` is a wrapper for a handful of common two point statistic calculation schemes. It calculates the two point statistics using the straightforward convolution method without patching. Use it if you have small datasets or an abundance of memory. 
+
+`GG = TwoPoint('auto',cutoff,periodicity,H1)` will calculate the autocorrelation of H1.
+
+`GG = TwoPoint('auto',cutoff,periodicity,H1,M1)` will calculate the autocorrelation of H1 with a mask M1.
+
+`GG = TwoPoint('cross',cutoff,periodicity,H1,H2)` will calculate the crosscorrelation of H1 with H2.
+
+`GG = TwoPoint('cross',cutoff,periodicity,H1,H2,M1)` will calculate the crosscorrelation of H1 with H2, with a uniform mask M1.
+
+`GG = TwoPoint('cross',cutoff,periodicity,H1,H2,M1,M2)` will calculate the crosscorrelation of H1 with mask M1 and H2 with mask M2.
+
+
