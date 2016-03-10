@@ -182,7 +182,7 @@ switch memtype
                             
                             % Progress Bar
                             fprintf(reverseStr);
-                            msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
+                            msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc));                                
                             reverseStr = repmat(sprintf('\b'), 1, msg);                                
 			
 						end
@@ -222,7 +222,7 @@ switch memtype
                                 
                                 % Progress Bar
                                 fprintf(reverseStr);
-                                msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc*zbc));                                
+                                msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc*zbc));                                
                                 reverseStr = repmat(sprintf('\b'), 1, msg);
 				
 							end
@@ -271,7 +271,7 @@ switch memtype
 
                             % Progress Bar
                             fprintf(reverseStr);
-                            msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
+                            msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc));                                
                             reverseStr = repmat(sprintf('\b'), 1, msg);                            
                             
 						end
@@ -312,7 +312,7 @@ switch memtype
                                 
                                 % Progress Bar
                                 fprintf(reverseStr);
-                                msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc*zbc));                                
+                                msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc*zbc));                                
                                 reverseStr = repmat(sprintf('\b'), 1, msg);                                
 								
 							end
