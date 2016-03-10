@@ -183,7 +183,11 @@ switch memtype
                             % Progress Bar
                             fprintf(reverseStr);
                             msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
-                            reverseStr = repmat(sprintf('\b'), 1, msg);                                
+                            reverseStr = repmat(sprintf('\b'), 1, msg);  
+                            
+                            if xx==xbc && yy==ybc
+                                fprintf('\n');
+                            end
 			
 						end
 					end
@@ -224,6 +228,10 @@ switch memtype
                                 fprintf(reverseStr);
                                 msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc*zbc));                                
                                 reverseStr = repmat(sprintf('\b'), 1, msg);
+                                
+                                if xx==xbc && yy==ybc && zz==zbc
+                                    fprintf('\n');
+                                end
 				
 							end
 						end
@@ -272,7 +280,11 @@ switch memtype
                             % Progress Bar
                             fprintf(reverseStr);
                             msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
-                            reverseStr = repmat(sprintf('\b'), 1, msg);                            
+                            reverseStr = repmat(sprintf('\b'), 1, msg);
+                            
+                            if xx==xbc && yy==ybc
+                                fprintf('\n');
+                            end
                             
 						end
 					end					
@@ -313,7 +325,11 @@ switch memtype
                                 % Progress Bar
                                 fprintf(reverseStr);
                                 msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc*zbc));                                
-                                reverseStr = repmat(sprintf('\b'), 1, msg);                                
+                                reverseStr = repmat(sprintf('\b'), 1, msg);   
+                                
+                                if xx==xbc && yy==ybc && zz==zbc
+                                    fprintf('\n');
+                                end
 								
 							end
 						end
