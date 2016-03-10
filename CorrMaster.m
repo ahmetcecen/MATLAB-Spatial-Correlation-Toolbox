@@ -159,6 +159,10 @@ switch memtype
 				
 					for xx=1:xbc
 						for yy=1:ybc
+                            
+                            tic;
+                                
+                            progress=progress+1;
 							
 							% Grab H1 Window
 							HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
@@ -252,6 +256,10 @@ switch memtype
 				
 					for xx=1:xbc
 						for yy=1:ybc
+                            
+                            tic;
+                                
+                            progress=progress+1;
 							
 							% Grab H1 Window
 							HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
@@ -294,6 +302,10 @@ switch memtype
 					for xx=1:xbc
 						for yy=1:ybc
 							for zz=1:zbc
+                                
+                                tic;
+                                
+                                progress=progress+1;
 							
 								% Grab H1 Window
 								HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
