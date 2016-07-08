@@ -159,6 +159,10 @@ switch memtype
 				
 					for xx=1:xbc
 						for yy=1:ybc
+                            
+                            tic;
+                                
+                            progress=progress+1;
 							
 							% Grab H1 Window
 							HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
@@ -182,8 +186,13 @@ switch memtype
                             
                             % Progress Bar
                             fprintf(reverseStr);
-                            msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc));                                
-                            reverseStr = repmat(sprintf('\b'), 1, msg);                                
+
+                            msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
+                            reverseStr = repmat(sprintf('\b'), 1, msg);  
+                            
+                            if xx==xbc && yy==ybc
+                                fprintf('\n');
+                            end
 			
 						end
 					end
@@ -224,6 +233,10 @@ switch memtype
                                 fprintf(reverseStr);
                                 msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc*zbc));                                
                                 reverseStr = repmat(sprintf('\b'), 1, msg);
+                                
+                                if xx==xbc && yy==ybc && zz==zbc
+                                    fprintf('\n');
+                                end
 				
 							end
 						end
@@ -244,6 +257,10 @@ switch memtype
 				
 					for xx=1:xbc
 						for yy=1:ybc
+                            
+                            tic;
+                                
+                            progress=progress+1;
 							
 							% Grab H1 Window
 							HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
@@ -271,8 +288,13 @@ switch memtype
 
                             % Progress Bar
                             fprintf(reverseStr);
-                            msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc));                                
-                            reverseStr = repmat(sprintf('\b'), 1, msg);                            
+
+                            msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc));                                
+                            reverseStr = repmat(sprintf('\b'), 1, msg);
+                            
+                            if xx==xbc && yy==ybc
+                                fprintf('\n');
+                            end
                             
 						end
 					end					
@@ -282,6 +304,10 @@ switch memtype
 					for xx=1:xbc
 						for yy=1:ybc
 							for zz=1:zbc
+                                
+                                tic;
+                                
+                                progress=progress+1;
 							
 								% Grab H1 Window
 								HH1 = m.H1(((sum(xwinlist(1:xx)))-xwinlist(xx)+1):(sum(xwinlist(1:xx))+2*(cutoff-1)),...
@@ -312,8 +338,13 @@ switch memtype
                                 
                                 % Progress Bar
                                 fprintf(reverseStr);
-                                msg=fprintf('Progress = %.2f %%\n',100*progress/(xbc*ybc*zbc));                                
-                                reverseStr = repmat(sprintf('\b'), 1, msg);                                
+
+                                msg=fprintf('Progress = %.2f %%',100*progress/(xbc*ybc*zbc));                                
+                                reverseStr = repmat(sprintf('\b'), 1, msg);   
+                                
+                                if xx==xbc && yy==ybc && zz==zbc
+                                    fprintf('\n');
+                                end
 								
 							end
 						end
